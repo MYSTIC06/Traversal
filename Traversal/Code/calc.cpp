@@ -134,14 +134,18 @@ int main(){
     cpp_int somme = 0; 
     cpp_int somme_2=0;
     cpp_int min = C_n.size(); // On sait par définition que tous les |C_a| sont inférieurs à |C_n| 
+    cpp_int max = 0;
     while ( fichier >> valeur){
         somme+=valeur;
         somme_2+=puissance(valeur,2);
         if (min > valeur){
             min=valeur;
         }
+        if ( max < valeur){
+            max=valeur;
+        }
     }
     //A la fin, somme est le nombre de jeux à 2 colonnes et n lignes et somme_2 est le nombre de jeux à trois colonnes et n lignes.
-    cout << " borne inf = " << min*puissance(somme_2,4)/puissance(C_n.size(),3) << '\n' << " borne sup = " << puissance(somme_2,3)*C_n.size();
+    cout << " borne inf = " << min*puissance(somme_2,4)/puissance(C_n.size(),3) << '\n' << " borne sup = " << max*puissance(somme_2,4)/puissance(C_n.size(),3);
     return 0; 
 }
