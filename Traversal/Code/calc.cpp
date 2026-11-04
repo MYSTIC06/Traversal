@@ -44,6 +44,7 @@ ostream& operator<<(ostream& os, const vector<int>& V) {
 }
 
 matrix initialisation_mat(int n){
+    //Initialise une matrice n,n avec des 0.
     matrix init = {};
     for (int i =0; i<= n-1; i++){
         init.push_back({});
@@ -55,6 +56,7 @@ matrix initialisation_mat(int n){
 }
 
 bool est_nulle(vector<int> l){
+    //Vérifie si une liste est composée uniquement de 0.
     for (int i=0; i<=l.size()-1; i++){
         if (l[i]!=-2){
             return false;
@@ -64,6 +66,7 @@ bool est_nulle(vector<int> l){
 }
 
 vector<int> init_comptage(int n){
+    //Construit un vecteur de n-1 éléments qui sont tous des 2.
     vector<int> initial = {};
     for(int i=1; i<=n-1; i++){
         initial.push_back(2);
@@ -72,6 +75,7 @@ vector<int> init_comptage(int n){
 }
 
 vector<int> decrement(vector<int> l){
+    //Retire 1 à l'écriture en base 5 d'un nombre ( ici les coefficient vont de -2 à 2 ).
     int i = l.size()-1;
     while(l[i]==-2){
         i--;
@@ -84,7 +88,7 @@ vector<int> decrement(vector<int> l){
 }
 
 vector<vector<int>> gen_C_n(int n){
-    //génére toutes les suites de marches de longueur n-1 (ie les colones de longeurs n qui commences par 0)
+    //Génére toutes les suites de marches de longueur n-1.
     vector<vector<int>> C_n = {};
     C_n.push_back(init_comptage(n));
     while(not(est_nulle(C_n.back()))){
@@ -94,6 +98,7 @@ vector<vector<int>> gen_C_n(int n){
 }
 
 int norme_1(vector<int> l){
+    //Calcule la norme 1 d'un vectueur.
     int res = 0;
     for( size_t i = 0; i<l.size(); i++ ){
         res+= abs(l[i]);
@@ -102,7 +107,7 @@ int norme_1(vector<int> l){
 }
 
 int nb_compatible(vector<int> a){
-    //revoie le nombre de suites de marches compatible à droite avec a 
+    //revoie le nombre de suites de marches compatible avec a 
     vector<int> F = {1,1,1,1,1}; // Il y a autant de 1 que de taille de marche possible ( cf. étude mathématique ) dans le cas calssique c'est 5.
     for ( size_t i = 0; i < a.size(); i++){
         matrix M_i = initialisation_mat(5);
@@ -121,23 +126,22 @@ int nb_compatible(vector<int> a){
     return norme_1(F);
 }
 
-vector<int> oppose(vector<int> l){
-    for (size_t i=0; i<l.size(); i++ ){
-        l[i]=-l[i];
-    }
-    return l;
-}
-
 int main(){
-    vector<vector<int>> C_n=gen_C_n(10);
-    ifstream fichier("valeurs.txt");
+    int n = 10;
+    vector<vector<int>> C_n=gen_C_n(n);
+    ifstream fichier("valeurs_|C_a|.txt");
     cpp_int valeur;
-    cpp_int somme = 0;
+    cpp_int somme = 0; 
     cpp_int somme_2=0;
+    cpp_int min = C_n.size(); // On sait par définition que tous les |C_a| sont inférieurs à |C_n| 
     while ( fichier >> valeur){
-        somme_2+=valeur;
-        somme+=puissance(valeur,2);
+        somme_+=valeur;
+        somme_2+=puissance(valeur,2);
+        if (min > valeur){
+            min=valeur;
+        }
     }
-    cout << " somme = " << somme << '\n' << " borne = " << puissance(somme,3)*25*109591;
+    //A la fin, somme est le nombre de jeux à 2 colonnes et n lignes et somme_2 est le nombre de jeux à trois colonnes et n lignes.
+    cout << " borne inf = " << min*puissance(some_2,4)/puissance(C_n.size(),3) << '\n' << " borne sup = " << puissance(somme_2,3)*C_n.size();
     return 0; 
 }
