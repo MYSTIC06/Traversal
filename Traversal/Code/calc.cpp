@@ -129,7 +129,7 @@ int nb_compatible(vector<int> a){
 int main(){
     int n = 10;
     vector<vector<int>> C_n=gen_C_n(n);
-    ifstream fichier("valeurs_|C_a|.txt");
+    ifstream fichier("valeurs_C_a.txt");
     cpp_int valeur;
     cpp_int somme = 0; 
     cpp_int somme_2=0;
