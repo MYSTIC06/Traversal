@@ -135,7 +135,7 @@ int main(){
     cpp_int somme_2=0;
     cpp_int min = C_n.size(); // On sait par définition que tous les |C_a| sont inférieurs à |C_n| 
     while ( fichier >> valeur){
-        somme_+=valeur;
+        somme+=valeur;
         somme_2+=puissance(valeur,2);
         if (min > valeur){
             min=valeur;
