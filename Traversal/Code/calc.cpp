@@ -142,6 +142,6 @@ int main(){
         }
     }
     //A la fin, somme est le nombre de jeux à 2 colonnes et n lignes et somme_2 est le nombre de jeux à trois colonnes et n lignes.
-    cout << " borne inf = " << min*puissance(some_2,4)/puissance(C_n.size(),3) << '\n' << " borne sup = " << puissance(somme_2,3)*C_n.size();
+    cout << " borne inf = " << min*puissance(somme_2,4)/puissance(C_n.size(),3) << '\n' << " borne sup = " << puissance(somme_2,3)*C_n.size();
     return 0; 
 }
